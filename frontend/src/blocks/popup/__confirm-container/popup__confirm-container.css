@@ -1,0 +1,19 @@
+.popup__confirm-container {
+  background: #fff;
+  width: 394px;
+  min-height: 181px;
+  border-radius: 10px;
+  padding-left: 36px;
+  position: relative;
+}
+
+.popup__confirm-container > .popup__title {
+  margin-bottom: 38px;
+}
+
+@media all and (max-width: 1023px) {
+  .popup__confirm-container {
+    width: 260px;
+    padding-left: 22px;
+  }
+}

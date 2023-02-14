@@ -1,0 +1,6 @@
+.auth {
+    display: flex;
+    color: #fff;
+    flex-direction: column;
+    align-items: center;
+}

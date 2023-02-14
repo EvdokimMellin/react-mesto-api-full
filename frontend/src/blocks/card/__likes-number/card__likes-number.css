@@ -1,0 +1,11 @@
+.card__likes-number {
+  grid-area: number;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #000;
+  margin: 0;
+  align-self: end;
+  margin-bottom: 22px;
+  justify-self: center;
+}

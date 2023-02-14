@@ -1,0 +1,7 @@
+.popup__image {
+  max-width: 75vw;
+  max-height: 75vh;
+  background-color: #000;
+  color: #fff;
+  font: 12px Inter;
+}

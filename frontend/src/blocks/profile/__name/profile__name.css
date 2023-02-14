@@ -1,0 +1,20 @@
+.profile__name {
+  font-size: 42px;
+  line-height: 48px;
+  font-weight: 500;
+  margin: 0;
+  max-width: 450px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  /*Для слишком большого имени*/
+}
+
+@media all and (max-width: 1023px) {
+  .profile__name {
+    font-size: 27px;
+    line-height: 33px;
+    position: relative;
+    max-width: 225px;
+  }
+}

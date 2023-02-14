@@ -1,0 +1,26 @@
+.profile__description {
+  margin-top: 8px; /*Хоть в макете и обозначен отступ в 16 пикселей, он
+  не соответствует реальности. Отступ делается от нижней границы
+  текста, а в макете буква "у" вылезает за пределы границы на 8 пискселей,
+  поэтому для визуального соответсвия макету я сократил отступ на эти
+  8 пикселей*/
+  max-width: 450px;
+  margin-bottom: 0;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  /*Для слишком большого описания*/
+}
+
+@media all and (max-width: 1023px) {
+ .profile__description {
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  margin-top: 7px;
+  max-width: 225px;
+ }
+}

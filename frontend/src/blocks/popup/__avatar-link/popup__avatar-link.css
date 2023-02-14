@@ -1,0 +1,3 @@
+.popup__avatar-link:last-of-type { /* Необходимо, чтобы превысить приоритет last-of-type класса popup__input */
+  margin-top: 5px;
+}

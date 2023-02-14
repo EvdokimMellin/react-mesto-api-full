@@ -1,0 +1,27 @@
+.profile__edit-button {
+  margin-left: 18px;
+  margin-top: 15px;
+  width: 24px;
+  height: 24px;
+  background-image: url(../../../images/edit-button.svg);
+  background-position: center;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+  cursor: pointer;
+}
+
+.profile__edit-button:hover {
+  opacity: 0.6;
+}
+
+@media all and (max-width: 1023px) {
+  .profile__edit-button {
+    width: 18px;
+    height: 18px;
+    position: absolute; /*Вынужденная мера для центрирования имени отдельно от кнопки*/
+    margin: 0;
+    top: 8px;
+    right: -28px;
+  }
+}

@@ -1,0 +1,13 @@
+.card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 282px 1fr 1fr;
+  grid-template-columns: 1fr 62px;
+  grid-template-areas: "image image"
+                       "title button"
+                       "title number";
+  min-height: 361px;
+  position: relative;
+}
