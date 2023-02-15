@@ -12,6 +12,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/errorHandler');
+const corsController = require('./middlewares/corsController');
 
 const { PORT = 3000, DATA_BASE = 'mongodb://localhost:27017/mestodb' } = process.env;
 
@@ -36,6 +37,8 @@ app.post('/signup', celebrate({
 }), createUser);
 
 app.use(requestLogger);
+
+app.use(corsController);
 
 app.use(auth);
 
