@@ -1,6 +1,7 @@
 const allowedCors = [
   'localhost:3000',
-  'http://evdokim-mellin-project.nomoredomains.work/',
+  'http://evdokim-mellin-project.nomoredomains.work',
+  'https://evdokim-mellin-project.nomoredomains.work',
 ];
 
 function corsController(req, res, next) {
@@ -10,7 +11,6 @@ function corsController(req, res, next) {
   const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
   const requestHeaders = req.headers['access-control-request-headers'];
 
-  console.log(origin);
   if (allowedCors.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
   }
@@ -18,10 +18,10 @@ function corsController(req, res, next) {
   if (method === 'OPTIONS') {
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
     res.header('Access-Control-Allow-Headers', requestHeaders);
-    return res.end();
+    res.end();
   }
 
-  return next();
+  next();
 }
 
 module.exports = corsController;
