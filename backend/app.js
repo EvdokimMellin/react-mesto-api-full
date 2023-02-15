@@ -13,7 +13,9 @@ const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/errorHandler');
 
-const { PORT = 3000, DATA_BASE = 'mongodb://localhost:27017/mestodb' } = process.env;
+const { PORT = 3000, DATA_BASE = 'mongodb://localhost:27017/mestodb', JWT_SECRET } = process.env;
+
+console.log(JWT_SECRET);
 
 mongoose.connect(DATA_BASE);
 
