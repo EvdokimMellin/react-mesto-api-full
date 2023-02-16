@@ -52,9 +52,21 @@ function App() {
       });
   }
 
+  // useEffect (() => {
+  //   tokenCheck()
+  //     .then((res) => {
+  //       console.log(res);
+  //       setLoginState(true);
+  //       setUserEmail(res.data.email);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, [])
+
   useEffect(() => {
-    Promise.all([api.getInitialCards(), api.getUserInfo()])
-      .then(([initialCards, userData]) => {
+    Promise.all([tokenCheck(), api.getInitialCards(), api.getUserInfo()])
+      .then(([res, initialCards, userData]) => {
         setCards(initialCards.map(initialCard => {return {
           name: initialCard.name,
           link: initialCard.link,
@@ -63,6 +75,8 @@ function App() {
           likes: initialCard.likes
         }}));
         setCurrentUser(userData);
+        setLoginState(true);
+        setUserEmail(res.data.email);
       })
       .catch((err) => console.log(err))
   }, [])
@@ -153,17 +167,17 @@ function App() {
     </>)
   }
 
-  useEffect (() => {
-    tokenCheck(userToken)
-      .then((res) => {
-        console.log(res);
-        setLoginState(true);
-        setUserEmail(res.data.email);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [])
+  // useEffect (() => {
+  //   tokenCheck(userToken)
+  //     .then((res) => {
+  //       console.log(res);
+  //       setLoginState(true);
+  //       setUserEmail(res.data.email);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, [])
 
   return (
     <div className="page">

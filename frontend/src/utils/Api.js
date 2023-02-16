@@ -46,7 +46,8 @@ class Api {
   getInitialCards () {
     return (fetch(`${this._baseUrl}/cards`, {
       method: 'GET',
-      headers: this._headers
+      headers: this._headers,
+      credentials : 'include',
     }))
       .then(this._checkResponse)
   }
@@ -58,7 +59,8 @@ class Api {
       body: JSON.stringify({
         name: addName,
         link: addDescription
-      })
+      }),
+      credentials : 'include',
     })
       .then(this._checkResponse);
   }

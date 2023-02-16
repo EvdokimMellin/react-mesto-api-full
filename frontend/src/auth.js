@@ -38,13 +38,12 @@ export function login (email, password) {
     .then((res) => (checkResponse(res)))
 }
 
-export function tokenCheck (token) {
+export function tokenCheck () {
   return fetch(`${baseUrl}/users/me`, {
     method: 'GET',
     headers: {
       "Content-Type": "application/json",
-      "Authorization" : `Bearer ${localStorage.getItem('token')}`,
-      // "Authorization": token,
+      // "cookie" : `jwt=${localStorage.getItem('token')}`,
     },
     credentials : 'include',
   })
