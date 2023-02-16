@@ -100,13 +100,6 @@ function App() {
   }
 
   function handleUpdateAvatar (avatarInputValue) {
-    tokenCheck()
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
     api.updateAvatar(avatarInputValue)
       .then((userData) => {
         setCurrentUser(userData);
@@ -141,6 +134,7 @@ function App() {
       .then((res) => {
         console.log(res);
         localStorage.setItem('token', res.token);
+        console.log(localStorage.getItem('token'));
         setLoginState(true);
         setUserEmail(email);
       })
