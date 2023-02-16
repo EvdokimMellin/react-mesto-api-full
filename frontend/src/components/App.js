@@ -100,6 +100,13 @@ function App() {
   }
 
   function handleUpdateAvatar (avatarInputValue) {
+    tokenCheck()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
     api.updateAvatar(avatarInputValue)
       .then((userData) => {
         setCurrentUser(userData);

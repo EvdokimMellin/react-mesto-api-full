@@ -60,8 +60,6 @@ app.post('/signup', celebrate({
   }),
 }), createUser);
 
-// app.use(corsController);
-
 app.use(requestLogger);
 
 app.use(auth);
