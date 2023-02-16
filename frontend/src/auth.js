@@ -40,8 +40,8 @@ export function tokenCheck () {
   return fetch(`${baseUrl}/users/me`, {
     method: 'GET',
     headers: {
-      "Content-Type": "application/json",
-      "Authorization" : `Bearer ${localStorage.getItem('token')}`
+      "Content-Type": "application/json"
+      // "Authorization" : `Bearer ${localStorage.getItem('token')}`
     }
   })
     .then((res) => (checkResponse(res)));

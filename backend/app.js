@@ -21,7 +21,7 @@ mongoose.connect(DATA_BASE);
 app.use(bodyParser.json());
 
 const allowedCors = [
-  'localhost:3000',
+  'http://localhost:3000',
   'http://evdokim-mellin-project.nomoredomains.work',
   'https://evdokim-mellin-project.nomoredomains.work',
 ];

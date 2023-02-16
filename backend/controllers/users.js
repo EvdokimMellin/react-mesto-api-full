@@ -44,7 +44,9 @@ function getCurrentUser(req, res, next) {
         // const currentUser = user;
         // currentUser.token = token;
         res.status(200).send({
-          _id, name, about, avatar, email, token,
+          data: {
+            _id, name, about, avatar, email, token,
+          },
         });
       } else {
         return Promise.reject(new NotFoundError('Такого пользователя не существует'));
