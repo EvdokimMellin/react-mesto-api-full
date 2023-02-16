@@ -30,24 +30,25 @@ function getCurrentUser(req, res, next) {
   console.log('object');
   User.findById(req.user._id)
     .then((user) => {
-      const { cookie } = req.headers;
-      if (!cookie || !cookie.startsWith('jwt=')) {
-        return next(new UnauthorizedError('Необходима авторизация'));
-      }
+      // const { cookie } = req.headers;
+      // if (!cookie || !cookie.startsWith('jwt=')) {
+      //   return next(new UnauthorizedError('Необходима авторизация'));
+      // }
 
-      const token = cookie.replace('jwt=', '');
+      // const token = cookie.replace('jwt=', '');
 
       if (user) {
-        const {
-          _id, name, about, avatar, email,
-        } = user;
-        // const currentUser = user;
-        // currentUser.token = token;
-        res.status(200).send({
-          data: {
-            _id, name, about, avatar, email, token,
-          },
-        });
+        res.status(200).send({ data: user });
+        // const {
+        //   _id, name, about, avatar, email,
+        // } = user;
+        // // const currentUser = user;
+        // // currentUser.token = token;
+        // res.status(200).send({
+        //   data: {
+        //     _id, name, about, avatar, email, token,
+        //   },
+        // });
       } else {
         return Promise.reject(new NotFoundError('Такого пользователя не существует'));
       }
@@ -125,7 +126,7 @@ function login(req, res, next) {
         maxAge: 3600000 * 24 * 7,
         httpOnly: true,
         sameSite: true,
-      }).status(200).send({ _id: enteringUser._id, token });
+      }).status(200).send({ _id: enteringUser._id });
     })
     .catch(next);
 }

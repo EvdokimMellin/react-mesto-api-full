@@ -17,7 +17,8 @@ export function register (email, password) {
     body: JSON.stringify({
       "password": password,
       "email": email
-    })
+    }),
+    credentials : 'include',
   })
     .then((res) => (checkResponse(res)))
 }
@@ -31,18 +32,21 @@ export function login (email, password) {
     body: JSON.stringify({
       "password": password,
       "email": email
-    })
+    }),
+    credentials : 'include',
   })
     .then((res) => (checkResponse(res)))
 }
 
-export function tokenCheck () {
+export function tokenCheck (token) {
   return fetch(`${baseUrl}/users/me`, {
     method: 'GET',
     headers: {
-      "Content-Type": "application/json"
-      // "Authorization" : `Bearer ${localStorage.getItem('token')}`
-    }
+      "Content-Type": "application/json",
+      "Authorization" : `Bearer ${localStorage.getItem('token')}`,
+      // "Authorization": token,
+    },
+    credentials : 'include',
   })
     .then((res) => (checkResponse(res)));
 }

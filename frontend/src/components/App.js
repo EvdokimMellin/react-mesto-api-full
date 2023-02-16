@@ -28,6 +28,7 @@ function App() {
   const [cards, setCards] = useState([])
   const [loginState, setLoginState] = useState(false);
   const [userEmail, setUserEmail] = useState('');
+  const [userToken, setUserToken] = useState('');
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
@@ -133,7 +134,7 @@ function App() {
     login(email, password)
       .then((res) => {
         console.log(res);
-        localStorage.setItem('token', res.token);
+        setUserToken(res.token)
         console.log(localStorage.getItem('token'));
         setLoginState(true);
         setUserEmail(email);
@@ -153,7 +154,7 @@ function App() {
   }
 
   useEffect (() => {
-    tokenCheck()
+    tokenCheck(userToken)
       .then((res) => {
         console.log(res);
         setLoginState(true);
