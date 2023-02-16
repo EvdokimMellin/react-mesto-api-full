@@ -35,6 +35,7 @@ app.use((req, res, next) => {
   if (allowedCors.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
     res.header('Access-Control-Allow-Credentials', true);
+    res.header('cookie', 'jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2VlNDQwZDkzM2NlNjc2OTFhZTVmM2YiLCJpYXQiOjE2NzY1NjIwNjcsImV4cCI6MTY3NzE2Njg2N30.TGvNqFWgdANus1BxniMu13m3yElV7PXsXaC95EWnsPM')
   }
   if (method === 'OPTIONS') {
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
