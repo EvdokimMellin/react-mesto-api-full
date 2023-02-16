@@ -107,10 +107,6 @@ function updateAvatar(req, res, next) {
 function login(req, res, next) {
   let enteringUser;
 
-  console.log(req.headers);
-  console.log(req);
-  console.log(req.cookies);
-
   User.findOne({ email: req.body.email }).select('+password')
     .then((user) => {
       if (!user) {
@@ -131,12 +127,7 @@ function login(req, res, next) {
         maxAge: 3600000 * 24 * 7,
         httpOnly: true,
         sameSite: true,
-      }).status(200).send({
-        _id: enteringUser._id,
-        consoleLog: {
-          a: req.headers, b: req, c: req.cookies,
-        },
-      });
+      }).status(200).send({ _id: enteringUser._id });
     })
     .catch(next);
 }
