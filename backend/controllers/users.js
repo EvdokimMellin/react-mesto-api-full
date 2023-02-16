@@ -126,7 +126,7 @@ function login(req, res, next) {
         maxAge: 3600000 * 24 * 7,
         httpOnly: true,
         sameSite: true,
-      }).status(200).send({ _id: enteringUser._id });
+      }).status(200).send({ _id: enteringUser._id, token });
     })
     .catch(next);
 }

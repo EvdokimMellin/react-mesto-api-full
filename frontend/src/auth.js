@@ -12,7 +12,8 @@ export function register (email, password) {
   return fetch(`${baseUrl}/signup`, {
     method: 'POST',
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "SetCookie": localStorage.getItem('token')
     },
     body: JSON.stringify({
       "password": password,
@@ -27,7 +28,8 @@ export function login (email, password) {
   return fetch(`${baseUrl}/signin`, {
     method: 'POST',
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "SetCookie": localStorage.getItem('token')
     },
     body: JSON.stringify({
       "password": password,
@@ -38,12 +40,13 @@ export function login (email, password) {
     .then((res) => (checkResponse(res)))
 }
 
-export function tokenCheck (token) {
+export function tokenCheck () {
   return fetch(`${baseUrl}/users/me`, {
     method: 'GET',
     headers: {
       "Content-Type": "application/json",
-      "Authorization" : `Bearer ${localStorage.getItem('token')}`,
+      // "Authorization" : `Bearer ${localStorage.getItem('token')}`,
+      "SetCookie": localStorage.getItem('token')
       // "Authorization": token,
     },
     credentials : 'include',

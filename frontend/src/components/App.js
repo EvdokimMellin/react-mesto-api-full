@@ -28,7 +28,7 @@ function App() {
   const [cards, setCards] = useState([])
   const [loginState, setLoginState] = useState(false);
   const [userEmail, setUserEmail] = useState('');
-  const [userToken, setUserToken] = useState('');
+  // const [userToken, setUserToken] = useState('');
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
@@ -51,6 +51,18 @@ function App() {
         console.log(err);
       });
   }
+
+  useEffect (() => {
+    tokenCheck()
+      .then((res) => {
+        console.log(res);
+        setLoginState(true);
+        setUserEmail(res.data.email);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [])
 
   useEffect(() => {
     Promise.all([api.getInitialCards(), api.getUserInfo()])
@@ -134,7 +146,9 @@ function App() {
     login(email, password)
       .then((res) => {
         console.log(res);
-        setUserToken(res.token)
+        // setUserToken(res.token);
+        // console.log(res.cookie);
+        localStorage.setItem('token', res.token);
         console.log(localStorage.getItem('token'));
         setLoginState(true);
         setUserEmail(email);
@@ -152,18 +166,6 @@ function App() {
       <Footer/>
     </>)
   }
-
-  useEffect (() => {
-    tokenCheck(userToken)
-      .then((res) => {
-        console.log(res);
-        setLoginState(true);
-        setUserEmail(res.data.email);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [])
 
   return (
     <div className="page">

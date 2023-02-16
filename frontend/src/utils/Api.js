@@ -100,7 +100,8 @@ class Api {
 const config = {
   headers: {
     authorization: 'e8e321ed-060f-4966-8b17-7867fd5284ad',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    "SetCookie": localStorage.getItem('token')
   },
   baseUrl: 'https://api.evdokim-m-project.nomoredomains.work'
 };
