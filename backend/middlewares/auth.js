@@ -12,7 +12,6 @@ function auth(req, res, next) {
 
   const token = cookie.replace('jwt=', '');
   let payload;
-  console.log(payload);
 
   try {
     payload = jwt.verify(token, JWT_SECRET);
