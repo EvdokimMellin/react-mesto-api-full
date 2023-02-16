@@ -12,7 +12,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/errorHandler');
-const corsController = require('./middlewares/corsController');
+// const corsController = require('./middlewares/corsController');
 
 const { PORT = 3000, DATA_BASE = 'mongodb://localhost:27017/mestodb' } = process.env;
 
@@ -48,9 +48,10 @@ app.use((req, res, next) => {
   const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
   const requestHeaders = req.headers['access-control-request-headers'];
 
-  if (allowedCors.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', origin);
-  }
+  // if (allowedCors.includes(origin)) {
+  //   res.header('Access-Control-Allow-Origin', origin);
+  // }
+  res.header('Access-Control-Allow-Origin', '*');
   if (method === 'OPTIONS') {
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
     res.header('Access-Control-Allow-Headers', requestHeaders);
@@ -60,9 +61,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(requestLogger);
-
 // app.use(corsController);
+
+app.use(requestLogger);
 
 app.use(auth);
 

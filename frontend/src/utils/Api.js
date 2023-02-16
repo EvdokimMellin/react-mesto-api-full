@@ -102,7 +102,7 @@ const config = {
     authorization: 'e8e321ed-060f-4966-8b17-7867fd5284ad',
     'Content-Type': 'application/json'
   },
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-52'
+  baseUrl: 'https://api.evdokim-m-project.nomoredomains.work'
 };
 const api = new Api(config);
 

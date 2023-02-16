@@ -1,4 +1,4 @@
-const baseUrl = 'http://api.evdokim-m-project.nomoredomains.work';
+const baseUrl = 'https://api.evdokim-m-project.nomoredomains.work';
 
 function checkResponse (res) {
   if (res.ok){
