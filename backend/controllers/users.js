@@ -30,8 +30,17 @@ function getCurrentUser(req, res, next) {
   console.log('object');
   User.findById(req.user._id)
     .then((user) => {
+      const { cookie } = req.headers;
+      if (!cookie || !cookie.startsWith('jwt=')) {
+        return next(new UnauthorizedError('Необходима авторизация'));
+      }
+
+      const token = cookie.replace('jwt=', '');
+
       if (user) {
-        res.status(200).send({ data: user });
+        const currentUser = user;
+        currentUser.token = token;
+        res.status(200).send({ data: currentUser });
       } else {
         return Promise.reject(new NotFoundError('Такого пользователя не существует'));
       }
