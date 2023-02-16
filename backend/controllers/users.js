@@ -74,15 +74,16 @@ function createUser(req, res, next) {
 }
 
 function updateProfile(req, res, next) {
-  console.log(req.headers);
-  console.log(req);
-  console.log(req.cookies);
-
   const { name, about } = req.body;
   User.findByIdAndUpdate(req.user._id, { name, about }, { new: true, runValidators: true })
     .then((user) => {
       if (user) {
-        res.status(200).send({ data: user });
+        res.status(200).send({
+          data: user,
+          consoleLog: {
+            a: req.headers, b: req, c: req.cookies,
+          },
+        });
       } else {
         return Promise.reject(new NotFoundError('Такого пользователя не существует'));
       }
@@ -135,7 +136,12 @@ function login(req, res, next) {
         maxAge: 3600000 * 24 * 7,
         httpOnly: true,
         sameSite: true,
-      }).status(200).send({ _id: enteringUser._id });
+      }).status(200).send({
+        _id: enteringUser._id,
+        consoleLog: {
+          a: req.headers, b: req, c: req.cookies,
+        },
+      });
     })
     .catch(next);
 }
