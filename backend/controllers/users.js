@@ -74,6 +74,10 @@ function createUser(req, res, next) {
 }
 
 function updateProfile(req, res, next) {
+  console.log(req.headers);
+  console.log(req);
+  console.log(req.cookies);
+
   const { name, about } = req.body;
   User.findByIdAndUpdate(req.user._id, { name, about }, { new: true, runValidators: true })
     .then((user) => {
@@ -106,6 +110,11 @@ function updateAvatar(req, res, next) {
 
 function login(req, res, next) {
   let enteringUser;
+
+  console.log(req.headers);
+  console.log(req);
+  console.log(req.cookies);
+
   User.findOne({ email: req.body.email }).select('+password')
     .then((user) => {
       if (!user) {
