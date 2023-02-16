@@ -28,7 +28,7 @@ function App() {
   const [cards, setCards] = useState([])
   const [loginState, setLoginState] = useState(false);
   const [userEmail, setUserEmail] = useState('');
-  const [userToken, setUserToken] = useState('');
+  // const [userToken, setUserToken] = useState('');
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
@@ -52,21 +52,9 @@ function App() {
       });
   }
 
-  // useEffect (() => {
-  //   tokenCheck()
-  //     .then((res) => {
-  //       console.log(res);
-  //       setLoginState(true);
-  //       setUserEmail(res.data.email);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [])
-
   useEffect(() => {
-    Promise.all([tokenCheck(), api.getInitialCards(), api.getUserInfo()])
-      .then(([res, initialCards, userData]) => {
+    Promise.all([api.getInitialCards(), api.getUserInfo()])
+      .then(([initialCards, userData]) => {
         setCards(initialCards.map(initialCard => {return {
           name: initialCard.name,
           link: initialCard.link,
@@ -75,8 +63,6 @@ function App() {
           likes: initialCard.likes
         }}));
         setCurrentUser(userData);
-        setLoginState(true);
-        setUserEmail(res.data.email);
       })
       .catch((err) => console.log(err))
   }, [])
@@ -147,9 +133,11 @@ function App() {
   function handleLogin (email, password) {
     login(email, password)
       .then((res) => {
+        // console.log(document.cookie);
+        // setUserToken(res.token)
+        // localStorage.setItem('token', res)
+        // console.log(localStorage.getItem('token'));
         console.log(res);
-        setUserToken(res.token)
-        console.log(localStorage.getItem('token'));
         setLoginState(true);
         setUserEmail(email);
       })
@@ -167,17 +155,19 @@ function App() {
     </>)
   }
 
-  // useEffect (() => {
-  //   tokenCheck(userToken)
-  //     .then((res) => {
-  //       console.log(res);
-  //       setLoginState(true);
-  //       setUserEmail(res.data.email);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [])
+  useEffect (() => {
+    tokenCheck()
+      .then((res) => {
+        console.log(res);
+        setLoginState(true);
+        setUserEmail(res.data.email);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // setLoginState(true);
+    // setUserEmail('qwerty@a.ru');
+  }, [])
 
   return (
     <div className="page">

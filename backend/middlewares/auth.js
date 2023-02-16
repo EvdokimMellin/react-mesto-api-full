@@ -6,6 +6,10 @@ function auth(req, res, next) {
   const { cookie } = req.headers;
   const { JWT_SECRET = 'dev-key' } = process.env;
 
+  console.log(req.headers);
+  console.log(req);
+  console.log(req.cookies);
+
   if (!cookie || !cookie.startsWith('jwt=')) {
     return next(new UnauthorizedError('Необходима авторизация'));
   }

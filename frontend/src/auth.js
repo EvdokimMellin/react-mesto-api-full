@@ -43,7 +43,7 @@ export function tokenCheck () {
     method: 'GET',
     headers: {
       "Content-Type": "application/json",
-      // "cookie" : `jwt=${localStorage.getItem('token')}`,
+      // "Authorization" : `Bearer ${localStorage.getItem('token')}`,
     },
     credentials : 'include',
   })
