@@ -64,7 +64,7 @@ function handleCardDelete (card) {
         setCurrentUser(userData);
       })
       .catch((err) => console.log(err))
-  }, [])
+  }, [loginState])
 
   function handleCardClick (card) {
     setSelectedCard(card);
