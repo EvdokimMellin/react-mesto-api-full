@@ -6,7 +6,6 @@ function Header (props) {
   const history = useHistory()
 
   function signOut(){
-    localStorage.removeItem('token');
     props.setLoginState(false);
     history.push('/sign-in');
   }

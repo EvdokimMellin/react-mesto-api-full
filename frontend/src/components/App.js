@@ -41,15 +41,15 @@ function App() {
       });
 }
 
-  function handleCardDelete (card) {
-    api.deleteCard(card._id)
-      .then(() => {
-        setCards((state) => state.filter((item) => item._id !== card._id));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+function handleCardDelete (card) {
+  api.deleteCard(card._id)
+    .then(() => {
+      setCards((state) => state.filter((item) => item._id !== card._id));
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
 
   useEffect(() => {
     Promise.all([api.getInitialCards(), api.getUserInfo()])
@@ -60,7 +60,7 @@ function App() {
           _id: initialCard._id,
           owner: initialCard.owner,
           likes: initialCard.likes
-        }}));
+        }}).reverse());
         setCurrentUser(userData);
       })
       .catch((err) => console.log(err))
@@ -167,7 +167,7 @@ function App() {
       <CurrentUserContext.Provider value={currentUser}>
         <AddPlacePopup isOpened={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlace} />
         <EditProfilePopup isOpened={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
-        <PopupWithForm title="Вы уверены?" name="confirm" isOpened={false} onClose={closeAllPopups} buttonText="Да" children={<></>} />
+        <PopupWithForm title="Вы уверены?" name="confirm" isOpened={false} onClose={closeAllPopups} buttonText="Да" children={<></>} handleSubmit={handleCardDelete}/>
         <EditAvatarPopup isOpened={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         <InfoTooltip res={response} onClose={closeAllPopups} />
