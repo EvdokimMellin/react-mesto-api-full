@@ -13,7 +13,7 @@ function createCard(req, res, next) {
   Card.create({
     name, link, owner,
   })
-    .then((card) => res.status(200).send({ data: card }))
+    .then((card) => res.status(200).send(card))
     .catch(next);
 }
 

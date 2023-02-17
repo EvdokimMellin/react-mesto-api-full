@@ -28,7 +28,6 @@ function App() {
   const [cards, setCards] = useState([])
   const [loginState, setLoginState] = useState(false);
   const [userEmail, setUserEmail] = useState('');
-  // const [userToken, setUserToken] = useState('');
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
@@ -133,10 +132,6 @@ function App() {
   function handleLogin (email, password) {
     login(email, password)
       .then((res) => {
-        // console.log(document.cookie);
-        // setUserToken(res.token)
-        // localStorage.setItem('token', res)
-        // console.log(localStorage.getItem('token'));
         console.log(res);
         setLoginState(true);
         setUserEmail(email);
@@ -160,13 +155,11 @@ function App() {
       .then((res) => {
         console.log(res);
         setLoginState(true);
-        setUserEmail(res.data.email);
+        setUserEmail(res.email);
       })
       .catch((err) => {
         console.log(err);
       });
-    // setLoginState(true);
-    // setUserEmail('qwerty@a.ru');
   }, [])
 
   return (

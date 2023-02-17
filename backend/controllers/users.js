@@ -18,7 +18,7 @@ function getUser(req, res, next) {
   User.findById(req.params.userId)
     .then((user) => {
       if (user) {
-        res.status(200).send({ data: user });
+        res.status(200).send(user);
       } else {
         return Promise.reject(new NotFoundError('Такого пользователя не существует'));
       }
@@ -48,9 +48,7 @@ function createUser(req, res, next) {
       name, about, avatar, email, password: hash,
     }))
     .then((user) => res.status(200).send({
-      data: {
-        name: user.name, about: user.about, avatar: user.avatar, email,
-      },
+      name: user.name, about: user.about, avatar: user.avatar, email,
     }))
     .catch(next);
 }
@@ -60,7 +58,7 @@ function updateProfile(req, res, next) {
   User.findByIdAndUpdate(req.user._id, { name, about }, { new: true, runValidators: true })
     .then((user) => {
       if (user) {
-        res.status(200).send({ data: user });
+        res.status(200).send(user);
       } else {
         return Promise.reject(new NotFoundError('Такого пользователя не существует'));
       }
@@ -75,7 +73,7 @@ function updateAvatar(req, res, next) {
     })
       .then((user) => {
         if (user) {
-          res.status(200).send({ data: user });
+          res.status(200).send(user);
         } else {
           return Promise.reject(new NotFoundError('Такого пользователя не существует'));
         }
