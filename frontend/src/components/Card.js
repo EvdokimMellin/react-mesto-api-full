@@ -3,6 +3,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserCurrent";
 
 export default function Card (props) {
     const currentUser = useContext(CurrentUserContext);
+    console.log(props.card);
     const isLiked = props.card.likes.some(like => like._id === currentUser._id);
 
     function DelButton () {

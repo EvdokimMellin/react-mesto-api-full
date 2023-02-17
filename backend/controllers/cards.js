@@ -54,7 +54,7 @@ function likeCard(req, res, next) {
   )
     .then((card) => {
       if (card) {
-        res.status(200).send({ message: 'Лайк поставлен' });
+        res.status(200).send(card);
       } else {
         return Promise.reject(new NotFoundError('Такой карточки не существует'));
       }
