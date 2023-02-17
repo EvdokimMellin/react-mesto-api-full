@@ -27,7 +27,8 @@ function getUser(req, res, next) {
 }
 
 function getCurrentUser(req, res, next) {
-  console.log('object');
+  // console.log(req);
+  // console.log(req.cookies);
   User.findById(req.user._id)
     .then((user) => {
       // const { cookie } = req.headers;

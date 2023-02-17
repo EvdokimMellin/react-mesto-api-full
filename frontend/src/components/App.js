@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {Route, Switch, Redirect} from 'react-router-dom';
 import { api } from '../utils/Api';
 import { CurrentUserContext } from '../contexts/CurrentUserCurrent';
