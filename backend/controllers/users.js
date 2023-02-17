@@ -27,29 +27,10 @@ function getUser(req, res, next) {
 }
 
 function getCurrentUser(req, res, next) {
-  // console.log(req);
-  // console.log(req.cookies);
   User.findById(req.user._id)
     .then((user) => {
-      // const { cookie } = req.headers;
-      // if (!cookie || !cookie.startsWith('jwt=')) {
-      //   return next(new UnauthorizedError('Необходима авторизация'));
-      // }
-
-      // const token = cookie.replace('jwt=', '');
-
       if (user) {
-        res.status(200).send({ data: user });
-        // const {
-        //   _id, name, about, avatar, email,
-        // } = user;
-        // // const currentUser = user;
-        // // currentUser.token = token;
-        // res.status(200).send({
-        //   data: {
-        //     _id, name, about, avatar, email, token,
-        //   },
-        // });
+        res.status(200).send(user);
       } else {
         return Promise.reject(new NotFoundError('Такого пользователя не существует'));
       }
