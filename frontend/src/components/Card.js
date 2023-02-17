@@ -3,13 +3,10 @@ import { CurrentUserContext } from "../contexts/CurrentUserCurrent";
 
 export default function Card (props) {
     const currentUser = useContext(CurrentUserContext);
-    const isLiked = props.card.likes.some(like => like._id === currentUser._id);
-
-    console.log(props.card.owner._id);
-    console.log(currentUser._id);
+    const isLiked = props.card.likes.some(like => like === currentUser._id);
 
     function DelButton () {
-        if (props.card.owner._id === currentUser._id) {
+        if (props.card.owner === currentUser._id) {
             return(
                 <button className="card__del-button" onClick={handleDeleteClick}></button>
             )
